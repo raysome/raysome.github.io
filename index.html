@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+    <meta charset="utf-8" />
+	<title>Rui Cao</title>
+
+<head>
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="lib/jquery-1.11.3.min.js"></script>
+	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<!-- <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.min.css"> -->
+
+	 <script> 
+
+	    $(function(){
+	      $("#home").load("home.html"); 
+	    });
+
+    </script> 
+</head>
+
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+
+			<div class="row">
+				
+				<div class="col-md-3">
+					<div class="imgNav">
+						<img id="profile" alt="photo" class="img-circle" src="img/caorui.png" style="width:150px;"/>
+					</div>
+				</div>
+
+				<div class="col-md-9">		
+
+					<div id="menu">
+					  <ul>
+					    <li> <a href="#home" style="height:100%">Home</a></li>
+					    <li> <a href="./publications.html">Publications</a></li>
+					    <li> <a href="./projects.html">Projects</a></li>
+					    <li> <a href="/blog/index.html">Blog</a></li>
+					  </ul>
+					</div>
+
+					<div id="home" class="par"></div>
+			</div>
+			
+			<footer>
+			    <p></p>
+			</footer>
+	</div>
+	
+</div>
+</body>
+</html>

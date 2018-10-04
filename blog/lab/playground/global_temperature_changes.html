@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Global Temperature Changes over Years</title>
+</head>
+<body>
+<a href="../index.html">Back</a>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="mainCanvas" style="height:600px"></div>
+<!-- ECharts单文件引入 -->
+<script src="lib/echarts/build/dist/echarts.js"></script>
+<script src="data/ExcelFormattedGISTEMPData2JS.js"></script>
+<script type="text/javascript">
+    // Prepare data
+    var years = [];
+    var glob = [];
+    var nhem = [];
+    var shem = [];
+    var obj;
+    for(var i in data){
+        obj = data[i];
+        years.push(obj.Year);
+        glob.push(obj.Glob);
+        nhem.push(obj.NHem);
+        shem.push(obj.SHem);
+    }
+
+    // 路径配置
+    require.config({
+        paths: {
+            echarts: 'lib/echarts/build/dist'
+        }
+    });
+
+    // 使用
+    require(
+            [
+                'echarts',
+                'echarts/chart/line'
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('mainCanvas'));
+
+                var option = {
+                    title: {
+                        text: 'Global Temperature Changes over Years',
+                        subtext: 'Data Source: NASA (http://data.giss.nasa.gov/gistemp/)'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['Global', 'Northern Hemisphere', 'Southern Hemisphere']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+//                            mark: {show: true},
+                            dataView: {show: true, readOnly: false, title: 'Data View'},
+//                            magicType: {show: true, type: ['line', 'bar']},
+                            restore: {show: true, title: 'Restore graph'},
+                            saveAsImage: {show: true, title: 'Save as image'}
+                        }
+                    },
+                    calculable: true,
+                    xAxis: [
+                        {
+                            name: '\n\nYear',
+                            type: 'category',
+                            boundaryGap: false,
+                            splitLine : {
+                                show: false
+                            },
+                            splitArea : {
+                                show: true
+                            },
+                            axisLabel : {
+                                show: true,
+                                interval: 9
+                            },
+                            data: years
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            name: 'Deviation',
+                            type: 'value'
+//                            axisLabel: {
+//                                formatter: '{value} °C'
+//                            }
+                        }
+                    ],
+                    series: [
+                        {
+                            name: 'Global',
+                            type: 'line',
+                            data: glob,
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: 'Max'},
+                                    {type: 'min', name: 'Min'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: 'Average'}
+                                ]
+                            }
+                        },
+                        {
+                            name: 'Northern Hemisphere',
+                            type: 'line',
+                            data: nhem,
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: 'Max'},
+                                    {type: 'min', name: 'Min'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: 'Average'}
+                                ]
+                            }
+                        },
+                        {
+                            name: 'Southern Hemisphere',
+                            type: 'line',
+                            data: shem,
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: 'Max'},
+                                    {type: 'min', name: 'Min'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: 'Average'}
+                                ]
+                            }
+                        }
+                    ]
+                };
+
+                myChart.setOption(option);
+            }
+    );
+</script>
+<div style="width:80%; margin:auto;">
+<h3>Explanation of the Graph:</h3>
+<p>The graph visualizes a subset of the <a href="http://data.giss.nasa.gov/gistemp">GISTEMP</a> data which are provided by NASA to show the mean Global Temperature changes over the years. From the graph, we can see a general increasing trend of the global temperature, and the alternate temperature change dominance of the northern and southern hemisphere.</p>
+
+<p>The X axis is the year from 1880 to 2014, and the Y axis is the deviation from the 1951–1980 mean in 0.01 degrees.</p>
+
+<p> As you can see in the legend (on the top of the graph), the three lines with different colors and point symbols represent the global temperature changes, the changes of the Northern Hemisphere and the changes of the Southern Hemisphere respectively. And the minimum, maximum and average values of each type of temperature changes are presented by colored markers and dotted lines.</p>
+
+<p>The legend controls the presentation of the graph. In order to have a better look of the lines, you can move your mouse over any logo of the three lines to highlight them, or click on logos to hide or show the lines.</p>
+
+<p>The even better thing is, you can see a tooltip with detailed information when your mouse is over selected year, minimum or maximum markers, and average lines.</p>
+
+<p>Moreover, you may see the toolbar at the top-right corner, you can see and change the raw data, restore the graph and save the graph as an image by clicking those three buttons respectively.</p>
+
+<p><b>Acknowledgement:</b> The graph is made by <a href="http://echarts.baidu.com/index-en.html">ECharts</a>, a powerful and open-source javascript library.
+</div>
+</body>

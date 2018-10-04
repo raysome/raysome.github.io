@@ -1,0 +1,43 @@
+/* 
+ * author: Ray
+ * date: 2017-04-09 
+ * */
+
+body{
+	width: 50%;
+	margin: auto;
+}
+
+p{
+	text-align: justify;
+}
+
+
+.figure{
+	text-align: center;
+}
+
+.figure img{
+	max-width: 600px;
+}
+
+.figure p{
+	font-weight: bold;
+	text-align: center;
+}
+
+
+table{
+	/*text-align: center;*/
+	margin: auto;
+}
+
+table caption{
+	font-weight: bold;
+}
+
+
+h1{
+	text-align: center;
+	margin-top: 1em;
+}

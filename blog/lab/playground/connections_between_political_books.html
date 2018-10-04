@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<title>Connections Between Political Books</title>
+<script src="lib/d3/d3.min.js"></script>
+</head>
+<style>
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+</style>
+<body>
+<p><a href="../index.html">Back</a></p>
+<script>
+
+var width = 960,
+    height = 500;
+
+var color_dict = {'l':'#e31a1c', 'n':'#4daf4a', 'c':'#377db8'};
+var legend_items = [
+	{"category":"Liberal", "color":"#e31a1c"},
+	{"category":"Neutral", "color":"#4daf4a"},
+	{"category":"Conservative", "color":"#377db8"}
+];
+
+
+var force = d3.layout.force()
+    .charge(-120)
+    .linkDistance(30)
+    .size([width, height]);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+	
+// draw legend
+var legend = svg.selectAll('.legend')
+				.data(legend_items)
+				.enter()
+				.append('g')
+				.attr('class', 'legend')
+				.attr('transform', function(d,i){return 'translate(10,'+ (10+i*20) +')';})
+
+legend.append('rect')
+		.attr('x', 0)
+		.attr('y', 1)
+		.attr("width", 16)  
+            .attr("height", 12)  
+            .style("fill", function(d){return d.color; });
+			
+legend.append("text")  
+            .attr("x", 20)  
+            .attr("y", 12)  
+            .classed("legendtext", true)  
+            .text(function(d) { return d.category; });  
+
+d3.json("data/polbooks.json", function(error, graph) {
+  if (error) throw error;
+
+  // stat counts of nodes' linkage
+  var cnt = []
+  for(var i=0; i<graph.nodes.length; i++){
+	cnt[i] = 0;
+  }
+  for(var i in graph.links){
+	var source = graph.links[i].source;
+	var target = graph.links[i].target;
+	cnt[source] += 1;
+	cnt[target] += 1;
+  }
+//  console.log(cnt);
+  
+  force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .start();
+
+  var link = svg.selectAll(".link")
+      .data(graph.links)
+    .enter().append("line")
+      .attr("class", "link");
+
+  var node = svg.selectAll(".node")
+      .data(graph.nodes)
+    .enter().append("circle")
+      .attr("class", "node")
+      .attr("r", function(d, i) {return 1.5*Math.sqrt(cnt[i]);})  // set circle size by cnt
+	  .style("fill", function(d) { return color_dict[d.group]; })
+      .call(force.drag);
+
+  node.append("title")
+      .text(function(d) { return d.label; });
+
+  force.on("tick", function() {
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node.attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+  });
+});
+
+</script>
+<div style="width:80%; margin:auto;">
+<h3>Explanation of the Graph:</h3>
+<p>The graph visualizes the connections between US political books. The data originate from <a href="http://www-personal.umich.edu/~mejn/netdata/">Mark Newman</a>. To download the original .gml file, click <a href="http://www-personal.umich.edu/~mejn/netdata/polbooks.zip">here</a>.</p>
+
+<p>In the graph, nodes represent books about US politics sold by the online bookseller Amazon.com,  edges represent frequent co-purchasing of books by the same buyers, as indicated by the "customers who bought this book also bought these other books" feature on Amazon.</p>
+
+<p>From the graph, we can see natural clusterings of each categories. To be more specific, the three political standpoints (liberal, neutral and conservative, as shown in the top-left legend), which are marked by different colors, seeing a significant clustering effect since books of same standpoint are closer to each other than other standpoints.</p>
+
+<p>More interestingly, liberal and conservative books are opposite to each other, and somewhat connected by neutral books, which accords to our intuitive. Besides, the size of each node represents how much other nodes are linked to it, more connected nodes, bigger the size. The big nodes are hubs of the connections, interestingly, the liberal and conservative groups seem to have similar number of hubs, which shows a state of balance.</p>
+
+<p>As for interaction, you can drag nodes to update the force layout and you can see what book each node is when you move mouse over it.</p>
+
+<p><b>Acknowledgement:</b> The graph is made by <a href="http://d3js.org/">D3</a>, a powerful and open-source javascript library. And the code is modified from the <a href="http://bl.ocks.org/mbostock/4062045">Force-Directed Graph</a> demo by Mike Bostock.</p>
+</div>
+</body>

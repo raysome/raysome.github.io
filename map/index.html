@@ -11,40 +11,46 @@
 </head>
 
 <body>
-<div id="mapid" style="width: 700; height: 400px;"></div>
+<div id="mapid" style="width: 100%; height: 400px;"></div>
 <script>
 	var whu = [30.537831182, 114.35666524]
 	var szu = [22.535, 113.932]
 	var unuk = [52.939, -1.197]
 	var unnc = [29.8022, 121.5592]
-	var mymap = L.map('mapid').setView(szu, 13);
 
-	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+	var avg_center = [(whu[0]+szu[0]+unuk[0]+unnc[0])/4, (whu[1]+szu[1]+unuk[1]+unnc[1])/4]
+
+	var universities = L.layerGroup();
+
+	L.marker(whu).bindPopup('Wuhan University').addTo(universities),
+	L.marker(szu).bindPopup('Shenzhen University').addTo(universities),
+	L.marker(unuk).bindPopup('University of Nottingham').addTo(universities),
+	L.marker(unnc).bindPopup('University of Nottingham, Ningbo Campus').addTo(universities);
+
+	var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		id: 'mapbox/streets-v11',
-		tileSize: 512,
-		zoomOffset: -1
-	}).addTo(mymap);
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+	var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 
-	L.marker(whu).addTo(mymap)
-    .bindPopup('Wuhan University')
-    // .openPopup();
+	var gray = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+	var color = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
 
-	L.marker(unuk).addTo(mymap)
-    .bindPopup('University of Nottingham')
-    // .openPopup();
+	var map = L.map('mapid', {
+		center: avg_center,
+		zoom: 2,
+		layers: [gray, universities]
+	});
 
-	L.marker(unnc).addTo(mymap)
-    .bindPopup('University of Nottingham, Ningbo campus')
-    // .openPopup();
+	var baseLayers = {
+		"Gray": gray,
+		"Color": color 
+	};
 
-	L.marker(szu).addTo(mymap)
-    .bindPopup('Shenzhen University')
-    .openPopup();
+	var overlays = {
+		"Universities": universities
+	};
 
+	L.control.layers(baseLayers, overlays).addTo(map);
 </script>
 
 </body>

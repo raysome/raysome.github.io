@@ -39,18 +39,18 @@
   <link rel="shorticon icon" type="image/x-icon" href="/blog/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="缘起昨晚，小平问我如何对大文件进行分割。虽然目前她没有对大文件进行排序的需求，但我想以后很可能会用到。 我想了一个解决方法，是先将大文件分割为若干子文件，然后将各子文件分别加载在内存中进行排序，最后将各排好序的子文件合并为大文件。但是这种方法要求各子文件之间的大小已经确定。以升序为例，即对于子文件 f1, f2, ..., fn，要求 any(f1) &amp;lt;= any(f2) &amp;lt;= ...">
+<meta name="description" content="缘起 昨晚，小平问我如何对大文件进行分割。虽然目前她没有对大文件进行排序的需求，但我想以后很可能会用到。 我想了一个解决方法，是先将大文件分割为若干子文件，然后将各子文件分别加载在内存中进行排序，最后将各排好序的子文件合并为大文件。但是这种方法要求各子文件之间的大小已经确定。以升序为例，即对于子文件 f1, f2, ..., fn，要求 any(f1) &amp;lt;= any(f2) &amp;lt;= .">
 <meta name="keywords" content="大文件,排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大文件排序">
 <meta property="og:url" content="http://yoursite.com/blog/2016/08/05/external_sorting/index.html">
 <meta property="og:site_name" content="RAY&#39;S BLOG">
-<meta property="og:description" content="缘起昨晚，小平问我如何对大文件进行分割。虽然目前她没有对大文件进行排序的需求，但我想以后很可能会用到。 我想了一个解决方法，是先将大文件分割为若干子文件，然后将各子文件分别加载在内存中进行排序，最后将各排好序的子文件合并为大文件。但是这种方法要求各子文件之间的大小已经确定。以升序为例，即对于子文件 f1, f2, ..., fn，要求 any(f1) &amp;lt;= any(f2) &amp;lt;= ...">
+<meta property="og:description" content="缘起 昨晚，小平问我如何对大文件进行分割。虽然目前她没有对大文件进行排序的需求，但我想以后很可能会用到。 我想了一个解决方法，是先将大文件分割为若干子文件，然后将各子文件分别加载在内存中进行排序，最后将各排好序的子文件合并为大文件。但是这种方法要求各子文件之间的大小已经确定。以升序为例，即对于子文件 f1, f2, ..., fn，要求 any(f1) &amp;lt;= any(f2) &amp;lt;= .">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2016-08-05T03:08:47.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大文件排序">
-<meta name="twitter:description" content="缘起昨晚，小平问我如何对大文件进行分割。虽然目前她没有对大文件进行排序的需求，但我想以后很可能会用到。 我想了一个解决方法，是先将大文件分割为若干子文件，然后将各子文件分别加载在内存中进行排序，最后将各排好序的子文件合并为大文件。但是这种方法要求各子文件之间的大小已经确定。以升序为例，即对于子文件 f1, f2, ..., fn，要求 any(f1) &amp;lt;= any(f2) &amp;lt;= ...">
+<meta name="twitter:description" content="缘起 昨晚，小平问我如何对大文件进行分割。虽然目前她没有对大文件进行排序的需求，但我想以后很可能会用到。 我想了一个解决方法，是先将大文件分割为若干子文件，然后将各子文件分别加载在内存中进行排序，最后将各排好序的子文件合并为大文件。但是这种方法要求各子文件之间的大小已经确定。以升序为例，即对于子文件 f1, f2, ..., fn，要求 any(f1) &amp;lt;= any(f2) &amp;lt;= .">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -211,26 +211,32 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>昨晚，小平问我如何对大文件进行分割。虽然目前她没有对大文件进行排序的需求，但我想以后很可能会用到。</p>
+        <span itemprop="articleBody"><h2 id="缘起"><a class="markdownIt-Anchor" href="#缘起"></a> 缘起</h2>
+<p>昨晚，小平问我如何对大文件进行分割。虽然目前她没有对大文件进行排序的需求，但我想以后很可能会用到。</p>
 <p>我想了一个<strong>解决方法</strong>，是先将大文件分割为若干子文件，然后将各子文件分别加载在内存中进行排序，最后将各排好序的子文件合并为大文件。但是这种方法要求各子文件之间的大小已经确定。以升序为例，即对于子文件 <code>f1, f2, ..., fn</code>，要求 <code>any(f1) &lt;= any(f2) &lt;= ... &lt;= any(fn)</code>，这样最好的简单合并才能确保所有记录的有序。</p>
 <p>因此，我提出，在划分子文件前，要先遍历大文件一次，统计各数值出现的次数，然后按分布来确定几个分割的阈值，再遍历大文件各条记录，按阈值划分子文件。</p>
 <p>以上我的解决方案是可行的，但是我想应该不是最优的，对于子文件的划分有些麻烦。我想看看别人是怎么解决大文件排序问题的，因此这个问题应该很典型了。然后我发现了外部排序，这是和内部排序相对的存在，我以前竟然不知道，看来还是对数据结构及算法学的不够系统。</p>
 <a id="more"></a>
-<h2 id="外部排序-External-sorting"><a href="#外部排序-External-sorting" class="headerlink" title="外部排序 (External sorting)"></a>外部排序 (External sorting)</h2><p>外部排序指的是<strong>大文件的排序</strong>，即待排序的记录存储在外存储器上，待排序的文件无法一次装入内存，需要在内存和外部存储器之间进行多次数据交换，以达到排序整个文件的目的。</p>
+<h2 id="外部排序-external-sorting"><a class="markdownIt-Anchor" href="#外部排序-external-sorting"></a> 外部排序 (External sorting)</h2>
+<p>外部排序指的是<strong>大文件的排序</strong>，即待排序的记录存储在外存储器上，待排序的文件无法一次装入内存，需要在内存和外部存储器之间进行多次数据交换，以达到排序整个文件的目的。</p>
 <p>外部排序最常用的算法是<strong>多路归并排序</strong>，即将原文件分解成多个能够一次性装入内存的部分，分别把每一部分调入内存完成排序。然后，对已经排序的子文件进行多路归并排序。</p>
-<h3 id="归并排序-Merge-Sort"><a href="#归并排序-Merge-Sort" class="headerlink" title="归并排序 (Merge Sort)"></a>归并排序 (Merge Sort)</h3><p> 归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用<strong>分治法（Divide and Conquer）</strong>的一个非常典型的应用。</p>
+<h3 id="归并排序-merge-sort"><a class="markdownIt-Anchor" href="#归并排序-merge-sort"></a> 归并排序 (Merge Sort)</h3>
+<p>归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用**分治法（Divide and Conquer）**的一个非常典型的应用。</p>
 <p>首先考虑下如何将将<strong>二个有序数列合并</strong>。这个非常简单，只要从比较二个数列的第一个数，谁小就先取谁，取了后就在对应数列中删除这个数。然后再进行比较，如果有数列为空，那直接将另一个数列的数据依次取出即可。</p>
 <p>解决了上面的合并有序数列问题，再来看归并排序，其的基本思路就是将数组分成二组A，B，如果这二组组内的数据都是有序的，那么就可以很方便的将这二组数据进行排序。如何让这二组组内数据有序了？</p>
 <p>可以将A，B组各自再分成二组。依次类推，当分出来的小组只有一个数据时，可以认为这个小组组内已经达到了有序，然后再合并相邻的二个小组就可以了。这样通过先递归的分解数列，再合并数列就完成了归并排序。</p>
-<h3 id="多路归并排序-K-Way-Merge-Algorithm"><a href="#多路归并排序-K-Way-Merge-Algorithm" class="headerlink" title="多路归并排序 (K-Way Merge Algorithm)"></a>多路归并排序 (K-Way Merge Algorithm)</h3><p>多路归并是外部排序(External Sort)的基础，实现也比较简单，和最简单的归并排序中的二路归并是基本一样的，只不过路数是浮动的k。</p>
+<h3 id="多路归并排序-k-way-merge-algorithm"><a class="markdownIt-Anchor" href="#多路归并排序-k-way-merge-algorithm"></a> 多路归并排序 (K-Way Merge Algorithm)</h3>
+<p>多路归并是外部排序(External Sort)的基础，实现也比较简单，和最简单的归并排序中的二路归并是基本一样的，只不过路数是浮动的k。</p>
 <ul>
 <li>(1)假设有K路数据流，流内部是有序的，且流间同为升序或降序</li>
 <li>(2)首先读取每个流的第一个数，如果已经EOF，pass</li>
 <li>(3)将有效的k (k可能小于K)个数比较，选出最小的那路min-k，输出，读取min-k的下一个</li>
 <li>(4)直到所有K路都EOF</li>
 </ul>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>大数据时代，大文件随处可见，而我们的计算机内存有限，必须借助外部存储来解决看似只能在内存中处理的问题。我们的大脑亦如此。我们每天接收的信息何止千千万，我们无法记住所有的信息，只能采撷精华，进行思考，而就是这些经过思维提炼后的精品也难保不会随着时间的流逝而逐渐忘却。因此，我们也需要借助我们大脑外的空间来存储我们无处安放或容易遗忘的知识和信息，以前是纸质笔记本，现在是电脑存储。正像罗辑思维里所说，机器现在已经成为我们的外延，未来不存粹是人类或机器人的争夺，而是人和机器的融合。</p>
-<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><ol>
+<h2 id="后记"><a class="markdownIt-Anchor" href="#后记"></a> 后记</h2>
+<p>大数据时代，大文件随处可见，而我们的计算机内存有限，必须借助外部存储来解决看似只能在内存中处理的问题。我们的大脑亦如此。我们每天接收的信息何止千千万，我们无法记住所有的信息，只能采撷精华，进行思考，而就是这些经过思维提炼后的精品也难保不会随着时间的流逝而逐渐忘却。因此，我们也需要借助我们大脑外的空间来存储我们无处安放或容易遗忘的知识和信息，以前是纸质笔记本，现在是电脑存储。正像罗辑思维里所说，机器现在已经成为我们的外延，未来不存粹是人类或机器人的争夺，而是人和机器的融合。</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考：</h2>
+<ol>
 <li><a href="http://www.cnblogs.com/HappyXie/archive/2012/08/29/2662624.html" target="_blank" rel="noopener">外部排序</a></li>
 <li><a href="http://blog.csdn.net/morewindows/article/details/6678165/" target="_blank" rel="noopener">白话经典算法系列之五 归并排序的实现</a></li>
 <li><a href="http://blog.chinaunix.net/uid-20613650-id-3292453.html" target="_blank" rel="noopener">多路归并算法</a></li>
@@ -327,7 +333,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -375,7 +381,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缘起"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外部排序-External-sorting"><span class="nav-number">2.</span> <span class="nav-text">外部排序 (External sorting)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序-Merge-Sort"><span class="nav-number">2.1.</span> <span class="nav-text">归并排序 (Merge Sort)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多路归并排序-K-Way-Merge-Algorithm"><span class="nav-number">2.2.</span> <span class="nav-text">多路归并排序 (K-Way Merge Algorithm)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考："><span class="nav-number">4.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缘起"><span class="nav-number">1.</span> <span class="nav-text"> 缘起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外部排序-external-sorting"><span class="nav-number">2.</span> <span class="nav-text"> 外部排序 (External sorting)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序-merge-sort"><span class="nav-number">2.1.</span> <span class="nav-text"> 归并排序 (Merge Sort)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多路归并排序-k-way-merge-algorithm"><span class="nav-number">2.2.</span> <span class="nav-text"> 多路归并排序 (K-Way Merge Algorithm)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text"> 后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text"> 参考：</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

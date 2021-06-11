@@ -13,19 +13,13 @@
 <body>
 <div id="mapid" style="width: 100%; height: 400px;"></div>
 <script>
-	var whu = [30.537831182, 114.35666524]
-	var szu = [22.535, 113.932]
-	var unuk = [52.939, -1.197]
-	var unnc = [29.8022, 121.5592]
+	var lsgi = [22.3065080748516, 114.17922208112331]
 
-	var avg_center = [(whu[0]+szu[0]+unuk[0]+unnc[0])/4, (whu[1]+szu[1]+unuk[1]+unnc[1])/4]
+	var avg_center = [lsgi[0], lsgi[1]]
 
 	var universities = L.layerGroup();
 
-	L.marker(whu).bindPopup('Wuhan University').addTo(universities),
-	L.marker(szu).bindPopup('Shenzhen University').addTo(universities),
-	L.marker(unuk).bindPopup('University of Nottingham').addTo(universities),
-	L.marker(unnc).bindPopup('University of Nottingham, Ningbo Campus').addTo(universities);
+	L.marker(lsgi).bindPopup('LSGI, HK PolyU').addTo(universities);
 
 	var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +

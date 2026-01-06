@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on Cao, Rui (Ray) @ RUI Lab</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in Home on Cao, Rui (Ray) @ RUI Lab</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;Dr. Rui Cao is currently an Assistant Professor at the &lt;em&gt;Thrust of Urban Governance and Design, Society Hub, The Hong Kong University of Science and Technology (Guangzhou)&lt;/em&gt; where he leads the &lt;a href=&#34;http://localhost:1313/team/&#34;&gt;Responsible Urban Intelligence (RUI) Lab&lt;/a&gt; . He is specialized in GIScience and particularly interested in GeoAI and Urban Informatics, with an ultimate goal of contributing to sustainable and human-centered smart cities for the benefit of society. He has published extensively on the topic of urban sensing and analytics based on multi-source spatio-temporal big data. He has led and participated in several research grants funded by NSFC, Microsoft, Tencent, etc. He is a member of ACM SIGSPATIAL, CCF, CPGIS, IEEE, and ISUI, and has served as a reviewer for NSFC and BELSPO grants, as well as many prestigious international journals covering fields of geospatial information science, computer science, and urban science. He served as the conference secretary for the &lt;a href=&#34;https://isocui.org/icui2023/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Global Smart Cities Summit cum The 3rd International Conference on Urban Informatics (GSCS &amp;amp; ICUI 2023)&lt;/a&gt; .&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Publications</title>
+      <link>http://localhost:1313/publications/</link>
+      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publications/</guid>
+      <description>&lt;p&gt;Full list can be found at &lt;a href=&#34;https://scholar.google.com/citations?user=Goj1ZjsAAAAJ&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google Scholar&lt;/a&gt; .&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Zhang, W., Tong, Y., Liu, Y., &amp;amp; Cao, R. (2025). Mapping the vanishing and transformation of urban villages in China. &lt;em&gt;Sustainable Cities and Society&lt;/em&gt;, 135, 106970.&lt;/li&gt;&#xA;&lt;li&gt;Cao, R., Tu, W., Chen, D., &amp;amp; Zhang, W. (2025). Mapping urban villages in China: Progress and challenges. &lt;em&gt;Computers, Environment and Urban Systems&lt;/em&gt;, 119, 102282.&lt;/li&gt;&#xA;&lt;li&gt;Yue, Y., Yan, G., Lan, T., Cao, R., Gao, Q., Gao, W., &amp;hellip; &amp;amp; Claramunt, C. (2025). Shaping future sustainable cities with AI-powered urban informatics: Toward human-AI symbiosis. &lt;em&gt;Computational Urban Science&lt;/em&gt;, 5(1), 31.&lt;/li&gt;&#xA;&lt;li&gt;Yu, J., Tu, W., Chen, X., Li, M., Chen, D., Cao, R., &amp;amp; Li, Q. (2025). Exploring geo-transferability of deep neural network by developing comprehensive metrics. Geo-spatial Information Science, 1-19.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Recent Projects</title>
+      <link>http://localhost:1313/projects/</link>
+      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/</guid>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;Urban Informal Settlements Mapping and Dynamics Analysis in China&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Research Group</title>
+      <link>http://localhost:1313/team/</link>
+      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/team/</guid>
+      <description>&lt;p&gt;The &lt;strong&gt;Responsible Urban Intelligence (RUI) Lab&lt;/strong&gt; focuses on the research of GeoAI and Urban Informatics based on multisource and multimodal data. Our ultimate goal is using geospatial and AI technologies responsibly to help build sustainable and human-centred smart cities for the benefit of society.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;We invite motivated students and researchers to join us, please contact Dr. &lt;a href=&#34;mailto:ruicao@hkust-gz.edu.cn&#34;&gt;Rui Cao&lt;/a&gt;  for inquiry.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;members&#34;&gt;Members&lt;/h1&gt; &lt;h2 id=&#34;phd-students&#34;&gt;PhD Students&lt;/h2&gt; &lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Liu, Jiaxuan&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Song, Chun&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Wu, Menglin&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Zhang, Yi&lt;/a&gt; &lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;master-students&#34;&gt;Master Students&lt;/h2&gt; &lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Long, Hongyu&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Zhou, Zhijie&lt;/a&gt; &lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;research-assistants&#34;&gt;Research Assistants&lt;/h2&gt; &lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Zhang, Wenyu&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Zhuang, Yun&lt;/a&gt; &lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;alumni&#34;&gt;Alumni&lt;/h1&gt; &lt;h2 id=&#34;hkustgz&#34;&gt;HKUST(GZ)&lt;/h2&gt; &lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Duan, Linling&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Liu, Zhendian&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Pan, Junting&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Sun, Yifei&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Zhou, Yin&lt;/a&gt; &lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;hk-polyu&#34;&gt;HK PolyU&lt;/h2&gt; &lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Dong, Sinuo&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Guo, Baodi&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Lau, Lap Hin (Jeff)&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Lau, On Tat (Roy)&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Leung, Janice&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Liao, Cai&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Liu, Chi Kwan (Eric)&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Tam, Ho Sum (Tammy)&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Whoo, Kwan Chi (Benny)&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Yang, Biyunfei&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Yang, Sifan&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Zhou, Changyanyi (Emily)&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Zhou, Linshan&lt;/a&gt; &lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#&#34;&gt;Zhou, Qiaohua&lt;/a&gt; &lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>
